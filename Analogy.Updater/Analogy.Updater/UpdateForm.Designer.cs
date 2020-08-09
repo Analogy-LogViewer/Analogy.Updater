@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateForm));
-            this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.labelUpdate = new System.Windows.Forms.Label();
             this.labelDescription = new System.Windows.Forms.Label();
             this.labelReleaseNotes = new System.Windows.Forms.Label();
@@ -37,14 +36,9 @@
             this.buttonRemindLater = new System.Windows.Forms.Button();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.buttonSkip = new System.Windows.Forms.Button();
+            this.rtbReleaseNote = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
             this.SuspendLayout();
-            // 
-            // webBrowser
-            // 
-            resources.ApplyResources(this.webBrowser, "webBrowser");
-            this.webBrowser.Name = "webBrowser";
-            this.webBrowser.ScriptErrorsSuppressed = true;
             // 
             // labelUpdate
             // 
@@ -64,7 +58,6 @@
             // buttonUpdate
             // 
             resources.ApplyResources(this.buttonUpdate, "buttonUpdate");
-            this.buttonUpdate.Image = global::Analogy.Updater.Properties.Resources.download;
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.UseVisualStyleBackColor = true;
             this.buttonUpdate.Click += new System.EventHandler(this.ButtonUpdateClick);
@@ -72,14 +65,12 @@
             // buttonRemindLater
             // 
             resources.ApplyResources(this.buttonRemindLater, "buttonRemindLater");
-            this.buttonRemindLater.Image = global::Analogy.Updater.Properties.Resources.clock_go;
             this.buttonRemindLater.Name = "buttonRemindLater";
             this.buttonRemindLater.UseVisualStyleBackColor = true;
             this.buttonRemindLater.Click += new System.EventHandler(this.ButtonRemindLaterClick);
             // 
             // pictureBoxIcon
             // 
-            this.pictureBoxIcon.Image = global::Analogy.Updater.Properties.Resources.update;
             resources.ApplyResources(this.pictureBoxIcon, "pictureBoxIcon");
             this.pictureBoxIcon.Name = "pictureBoxIcon";
             this.pictureBoxIcon.TabStop = false;
@@ -88,21 +79,25 @@
             // 
             resources.ApplyResources(this.buttonSkip, "buttonSkip");
             this.buttonSkip.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            this.buttonSkip.Image = global::Analogy.Updater.Properties.Resources.hand_point;
             this.buttonSkip.Name = "buttonSkip";
             this.buttonSkip.UseVisualStyleBackColor = true;
             this.buttonSkip.Click += new System.EventHandler(this.ButtonSkipClick);
+            // 
+            // rtbReleaseNote
+            // 
+            resources.ApplyResources(this.rtbReleaseNote, "rtbReleaseNote");
+            this.rtbReleaseNote.Name = "rtbReleaseNote";
             // 
             // UpdateForm
             // 
             this.AcceptButton = this.buttonUpdate;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.rtbReleaseNote);
             this.Controls.Add(this.pictureBoxIcon);
             this.Controls.Add(this.labelReleaseNotes);
             this.Controls.Add(this.labelDescription);
             this.Controls.Add(this.labelUpdate);
-            this.Controls.Add(this.webBrowser);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonSkip);
             this.Controls.Add(this.buttonRemindLater);
@@ -123,11 +118,10 @@
         private System.Windows.Forms.Button buttonRemindLater;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Button buttonSkip;
-        private System.Windows.Forms.WebBrowser webBrowser;
         private System.Windows.Forms.Label labelUpdate;
         private System.Windows.Forms.Label labelDescription;
         private System.Windows.Forms.Label labelReleaseNotes;
         private System.Windows.Forms.PictureBox pictureBoxIcon;
-
+        private System.Windows.Forms.RichTextBox rtbReleaseNote;
     }
 }

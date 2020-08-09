@@ -22,7 +22,7 @@ namespace Analogy.Updater.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Analogy.Updater.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Analogy.Updater.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Analogy.Updater.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,17 +63,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap clock_go {
-            get {
-                object obj = ResourceManager.GetObject("clock_go", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap clock_go_32 {
+        internal static System.Drawing.Bitmap clock_go_32 {
             get {
                 object obj = ResourceManager.GetObject("clock_go_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +73,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap clock_play {
+        internal static System.Drawing.Bitmap clock_play {
             get {
                 object obj = ResourceManager.GetObject("clock_play", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +83,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap download {
+        internal static System.Drawing.Bitmap download {
             get {
                 object obj = ResourceManager.GetObject("download", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +93,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap download_32 {
+        internal static System.Drawing.Bitmap download_32 {
             get {
                 object obj = ResourceManager.GetObject("download_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +103,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Download_32x32 {
+        internal static System.Drawing.Bitmap Download_32x32 {
             get {
                 object obj = ResourceManager.GetObject("Download_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +113,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Downloading at {0}/s.
         /// </summary>
-        public static string DownloadSpeedMessage {
+        internal static string DownloadSpeedMessage {
             get {
                 return ResourceManager.GetString("DownloadSpeedMessage", resourceCulture);
             }
@@ -132,7 +122,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Checksum differs.
         /// </summary>
-        public static string FileIntegrityCheckFailedCaption {
+        internal static string FileIntegrityCheckFailedCaption {
             get {
                 return ResourceManager.GetString("FileIntegrityCheckFailedCaption", resourceCulture);
             }
@@ -141,7 +131,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized string similar to File integrity check failed and reported some errors..
         /// </summary>
-        public static string FileIntegrityCheckFailedMessage {
+        internal static string FileIntegrityCheckFailedMessage {
             get {
                 return ResourceManager.GetString("FileIntegrityCheckFailedMessage", resourceCulture);
             }
@@ -150,7 +140,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap hand_point {
+        internal static System.Drawing.Bitmap hand_point {
             get {
                 object obj = ResourceManager.GetObject("hand_point", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -160,7 +150,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Unsupported Hash Algorithm.
         /// </summary>
-        public static string HashAlgorithmNotSupportedCaption {
+        internal static string HashAlgorithmNotSupportedCaption {
             get {
                 return ResourceManager.GetString("HashAlgorithmNotSupportedCaption", resourceCulture);
             }
@@ -169,7 +159,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Hash algorithm provided in the XML file is not supported..
         /// </summary>
-        public static string HashAlgorithmNotSupportedMessage {
+        internal static string HashAlgorithmNotSupportedMessage {
             get {
                 return ResourceManager.GetString("HashAlgorithmNotSupportedMessage", resourceCulture);
             }
@@ -178,7 +168,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap update {
+        internal static System.Drawing.Bitmap update {
             get {
                 object obj = ResourceManager.GetObject("update", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -188,7 +178,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Update Check Failed.
         /// </summary>
-        public static string UpdateCheckFailedCaption {
+        internal static string UpdateCheckFailedCaption {
             get {
                 return ResourceManager.GetString("UpdateCheckFailedCaption", resourceCulture);
             }
@@ -197,7 +187,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized string similar to There is a problem reaching update server. Please check your internet connection and try again later..
         /// </summary>
-        public static string UpdateCheckFailedMessage {
+        internal static string UpdateCheckFailedMessage {
             get {
                 return ResourceManager.GetString("UpdateCheckFailedMessage", resourceCulture);
             }
@@ -206,7 +196,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Update Unavailable.
         /// </summary>
-        public static string UpdateUnavailableCaption {
+        internal static string UpdateUnavailableCaption {
             get {
                 return ResourceManager.GetString("UpdateUnavailableCaption", resourceCulture);
             }
@@ -215,7 +205,7 @@ namespace Analogy.Updater.Properties {
         /// <summary>
         ///   Looks up a localized string similar to There is no update available. Please try again later..
         /// </summary>
-        public static string UpdateUnavailableMessage {
+        internal static string UpdateUnavailableMessage {
             get {
                 return ResourceManager.GetString("UpdateUnavailableMessage", resourceCulture);
             }
