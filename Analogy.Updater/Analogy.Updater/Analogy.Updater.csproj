@@ -4,6 +4,9 @@
     <OutputType>WinExe</OutputType>
     <TargetFrameworks>netcoreapp3.1;net472</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
+    <Authors>Lior Banai</Authors>
+    <Company>Analogy.LogViewer</Company>
+    <Version>0.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
