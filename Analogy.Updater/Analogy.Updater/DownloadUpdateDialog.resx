@@ -181,10 +181,10 @@
     <value>Top, Right</value>
   </data>
   <data name="labelSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>303, 19</value>
+    <value>304, 19</value>
   </data>
   <data name="labelSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 20</value>
+    <value>154, 36</value>
   </data>
   <data name="labelSize.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
