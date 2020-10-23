@@ -31,8 +31,7 @@ namespace Analogy.Updater
             }
             else
             {
-                title = "test";
-                downloadURL = "https://github.com/LiorBanai/HDF5-CSharp/releases/download/V1.11.0/V1.11.0.zip";
+                Application.Exit();
             }
             Application.Run(new MainForm(title, downloadURL));
         }
