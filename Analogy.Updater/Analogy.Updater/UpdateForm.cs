@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
+using Analogy.Interfaces;
 using Microsoft.Win32;
 
 namespace Analogy.Updater
@@ -24,7 +25,7 @@ namespace Analogy.Updater
                 string.Format(resources.GetString("labelDescription.Text", CultureInfo.CurrentCulture),
                     AutoUpdater.AppTitle, AutoUpdater.CurrentVersion, AutoUpdater.InstalledVersion);
 
-            if (AutoUpdater.Mandatory && AutoUpdater.UpdateMode == Mode.Forced)
+            if (AutoUpdater.Mandatory && AutoUpdater.UpdateMode == UpdateMode.Forced)
             {
                 ControlBox = false;
             }
@@ -65,7 +66,7 @@ namespace Analogy.Updater
             }
             else
             {
-                if (AutoUpdater.DownloadUpdate())
+                if (AutoUpdater.DownloadUpdate(this))
                 {
                     DialogResult = DialogResult.OK;
                 }
@@ -86,55 +87,55 @@ namespace Analogy.Updater
 
         private void ButtonRemindLaterClick(object sender, EventArgs e)
         {
-            if (AutoUpdater.LetUserSelectRemindLater)
-            {
-                var remindLaterForm = new RemindLaterForm();
+            //if (AutoUpdater.LetUserSelectRemindLater)
+            //{
+            //    var remindLaterForm = new RemindLaterForm();
 
-                var dialogResult = remindLaterForm.ShowDialog();
+            //    var dialogResult = remindLaterForm.ShowDialog();
 
-                if (dialogResult.Equals(DialogResult.OK))
-                {
-                    AutoUpdater.RemindLaterTimeSpan = remindLaterForm.RemindLaterFormat;
-                    AutoUpdater.RemindLaterAt = remindLaterForm.RemindLaterAt;
-                }
-                else if (dialogResult.Equals(DialogResult.Abort))
-                {
-                    ButtonUpdateClick(sender, e);
-                    return;
-                }
-                else
-                {
-                    return;
-                }
-            }
+            //    if (dialogResult.Equals(DialogResult.OK))
+            //    {
+            //        AutoUpdater.RemindLaterTimeSpan = remindLaterForm.RemindLaterFormat;
+            //        AutoUpdater.RemindLaterAt = remindLaterForm.RemindLaterAt;
+            //    }
+            //    else if (dialogResult.Equals(DialogResult.Abort))
+            //    {
+            //        ButtonUpdateClick(sender, e);
+            //        return;
+            //    }
+            //    else
+            //    {
+            //        return;
+            //    }
+            //}
 
-            using (RegistryKey updateKey = Registry.CurrentUser.CreateSubKey(AutoUpdater.RegistryLocation))
-            {
-                if (updateKey != null)
-                {
-                    updateKey.SetValue("version", AutoUpdater.CurrentVersion);
-                    updateKey.SetValue("skip", 0);
-                    DateTime remindLaterDateTime = DateTime.Now;
-                    switch (AutoUpdater.RemindLaterTimeSpan)
-                    {
-                        case RemindLaterFormat.Days:
-                            remindLaterDateTime = DateTime.Now + TimeSpan.FromDays(AutoUpdater.RemindLaterAt);
-                            break;
-                        case RemindLaterFormat.Hours:
-                            remindLaterDateTime = DateTime.Now + TimeSpan.FromHours(AutoUpdater.RemindLaterAt);
-                            break;
-                        case RemindLaterFormat.Minutes:
-                            remindLaterDateTime = DateTime.Now + TimeSpan.FromMinutes(AutoUpdater.RemindLaterAt);
-                            break;
-                    }
+            //using (RegistryKey updateKey = Registry.CurrentUser.CreateSubKey(AutoUpdater.RegistryLocation))
+            //{
+            //    if (updateKey != null)
+            //    {
+            //        updateKey.SetValue("version", AutoUpdater.LatestVersion);
+            //        updateKey.SetValue("skip", 0);
+            //        DateTime remindLaterDateTime = DateTime.Now;
+            //        switch (AutoUpdater.RemindLaterTimeSpan)
+            //        {
+            //            case RemindLaterFormat.Days:
+            //                remindLaterDateTime = DateTime.Now + TimeSpan.FromDays(AutoUpdater.RemindLaterAt);
+            //                break;
+            //            case RemindLaterFormat.Hours:
+            //                remindLaterDateTime = DateTime.Now + TimeSpan.FromHours(AutoUpdater.RemindLaterAt);
+            //                break;
+            //            case RemindLaterFormat.Minutes:
+            //                remindLaterDateTime = DateTime.Now + TimeSpan.FromMinutes(AutoUpdater.RemindLaterAt);
+            //                break;
+            //        }
 
-                    updateKey.SetValue("remindlater",
-                        remindLaterDateTime.ToString(CultureInfo.CreateSpecificCulture("en-US").DateTimeFormat));
-                    AutoUpdater.SetTimer(remindLaterDateTime);
-                }
-            }
+            //        updateKey.SetValue("remindlater",
+            //            remindLaterDateTime.ToString(CultureInfo.CreateSpecificCulture("en-US").DateTimeFormat));
+            //        AutoUpdater.SetTimer(remindLaterDateTime);
+            //    }
+            //}
 
-            DialogResult = DialogResult.Cancel;
+            //DialogResult = DialogResult.Cancel;
         }
 
         private void UpdateForm_FormClosed(object sender, FormClosedEventArgs e)

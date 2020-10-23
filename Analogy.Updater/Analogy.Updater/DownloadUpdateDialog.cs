@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Analogy.Updater.Properties;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
@@ -6,9 +7,7 @@ using System.IO;
 using System.Net;
 using System.Net.Cache;
 using System.Security.Cryptography;
-using System.Text;
 using System.Windows.Forms;
-using Analogy.Updater.Properties;
 
 namespace Analogy.Updater
 {
@@ -27,11 +26,6 @@ namespace Analogy.Updater
             InitializeComponent();
 
             _downloadURL = downloadURL;
-
-            //if (AutoUpdater.Mandatory && AutoUpdater.UpdateMode == Mode.ForcedDownload)
-            //{
-            //    ControlBox = false;
-            //}
         }
 
         private void DownloadUpdateDialogLoad(object sender, EventArgs e)
@@ -82,7 +76,7 @@ namespace Analogy.Updater
             else
             {
                 var timeSpan = DateTime.Now - _startedAt;
-                long totalSeconds = (long) timeSpan.TotalSeconds;
+                long totalSeconds = (long)timeSpan.TotalSeconds;
                 if (totalSeconds > 0)
                 {
                     var bytesPerSecond = e.BytesReceived / totalSeconds;
@@ -217,30 +211,31 @@ namespace Analogy.Updater
                 {
                     processStartInfo.Arguments += " " + AutoUpdater.InstallerArgs;
                 }
-            }
 
-            if (AutoUpdater.RunUpdateAsAdmin)
-            {
-                processStartInfo.Verb = "runas";
-            }
 
-            try
-            {
-                Process.Start(processStartInfo);
-            }
-            catch (Win32Exception exception)
-            {
-                _webClient = null;
-                if (exception.NativeErrorCode != 1223)
-                    throw;
+                if (AutoUpdater.RunUpdateAsAdmin)
+                {
+                    processStartInfo.Verb = "runas";
+                }
+
+                try
+                {
+                    Process.Start(processStartInfo);
+                }
+                catch (Win32Exception exception)
+                {
+                    _webClient = null;
+                    if (exception.NativeErrorCode != 1223)
+                        throw;
+                }
             }
 
             Close();
         }
 
-        private static String BytesToString(long byteCount)
+        private static string BytesToString(long byteCount)
         {
-            string[] suf = {"B", "KB", "MB", "GB", "TB", "PB", "EB"};
+            string[] suf = { "B", "KB", "MB", "GB", "TB", "PB", "EB" };
             if (byteCount == 0)
                 return "0" + suf[0];
             long bytes = Math.Abs(byteCount);
@@ -251,7 +246,7 @@ namespace Analogy.Updater
 
         private static string TryToFindFileName(string contentDisposition, string lookForFileName)
         {
-            string fileName = String.Empty;
+            string fileName = string.Empty;
             if (!string.IsNullOrEmpty(contentDisposition))
             {
                 var index = contentDisposition.IndexOf(lookForFileName, StringComparison.CurrentCultureIgnoreCase);
@@ -280,7 +275,7 @@ namespace Analogy.Updater
                     if (hashAlgorithm != null)
                     {
                         var hash = hashAlgorithm.ComputeHash(stream);
-                        var fileChecksum = BitConverter.ToString(hash).Replace("-", String.Empty).ToLowerInvariant();
+                        var fileChecksum = BitConverter.ToString(hash).Replace("-", string.Empty).ToLowerInvariant();
 
                         if (fileChecksum == checksum.ToLower()) return true;
 

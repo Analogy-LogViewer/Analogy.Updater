@@ -38,7 +38,6 @@
             // 
             // pictureBoxIcon
             // 
-            this.pictureBoxIcon.Image = global::Analogy.Updater.Properties.Resources.download_32;
             resources.ApplyResources(this.pictureBoxIcon, "pictureBoxIcon");
             this.pictureBoxIcon.Name = "pictureBoxIcon";
             this.pictureBoxIcon.TabStop = false;

@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFrameworks>netcoreapp3.1;net472</TargetFrameworks>
+		<TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
 		<UseWindowsForms>true</UseWindowsForms>
 		<Authors>Lior Banai</Authors>
 		<Company>Analogy.LogViewer</Company>
@@ -21,6 +21,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="2.7.6" />
 		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -29,6 +30,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
 		<PackageReference Include="System.Resources.Extensions" Version="4.6.0" />
 	</ItemGroup>
 
