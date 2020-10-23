@@ -1,52 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Analogy.Interfaces;
+﻿using Analogy.Interfaces;
 using Analogy.Interfaces.DataTypes;
+using System;
+using System.Windows.Forms;
 
 namespace Analogy.Updater
 {
     public partial class MainForm : Form
     {
+        private string Title { get; }
+        private string DownloadURL { get; }
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void btnDownload_Click(object sender, EventArgs e)
+        public MainForm(string title, string downloadURL) : this()
         {
-            DownloadInformation updateInfo = new DownloadInformation
-            ("", true,
-                "https://github.com/Analogy-LogViewer/Analogy.LogViewer/releases/download/V4.2.10/netcoreapp3.1.zip",
-                "https://github.com/Analogy-LogViewer/Analogy.LogViewer/releases/tag/V4.2.10",
-                new Version(4, 2, 10), new Version(4, 2, 8), false,
-                UpdateMode.Normal, "", "", "");
-            AutoUpdater.Start(updateInfo);
+            Title = title;
+            DownloadURL = downloadURL;
 
         }
-
+  
         private void MainForm_Load(object sender, EventArgs e)
         {
-            if (AutoUpdater.OpenDownloadPage)
+            if (DownloadURL != null)
             {
-                var processStartInfo = new ProcessStartInfo(AutoUpdater.DownloadURL);
-
-                Process.Start(processStartInfo);
-
-                DialogResult = DialogResult.OK;
-            }
-            else
-            {
+                lblTitleValue.Text = Title;
+                AutoUpdater.DownloadURL=DownloadURL;
                 if (AutoUpdater.DownloadUpdate(this))
                 {
                     DialogResult = DialogResult.OK;
+                    
                 }
             }
         }

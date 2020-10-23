@@ -45,7 +45,6 @@
             this.btnDownload.TabIndex = 0;
             this.btnDownload.Text = "Download";
             this.btnDownload.UseVisualStyleBackColor = true;
-            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
             // label1
             // 

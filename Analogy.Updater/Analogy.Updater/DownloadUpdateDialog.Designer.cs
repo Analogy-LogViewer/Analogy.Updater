@@ -29,18 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DownloadUpdateDialog));
-            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.labelInformation = new System.Windows.Forms.Label();
             this.labelSize = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBoxIcon
-            // 
-            resources.ApplyResources(this.pictureBoxIcon, "pictureBoxIcon");
-            this.pictureBoxIcon.Name = "pictureBoxIcon";
-            this.pictureBoxIcon.TabStop = false;
             // 
             // progressBar
             // 
@@ -64,22 +56,18 @@
             this.Controls.Add(this.labelSize);
             this.Controls.Add(this.labelInformation);
             this.Controls.Add(this.progressBar);
-            this.Controls.Add(this.pictureBoxIcon);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DownloadUpdateDialog";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DownloadUpdateDialog_FormClosing);
             this.Load += new System.EventHandler(this.DownloadUpdateDialogLoad);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBoxIcon;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label labelInformation;
         private System.Windows.Forms.Label labelSize;

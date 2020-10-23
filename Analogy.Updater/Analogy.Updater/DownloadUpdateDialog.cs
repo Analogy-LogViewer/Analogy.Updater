@@ -1,9 +1,10 @@
 ﻿using Analogy.Updater.Properties;
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.IO.Compression;
+using System.Linq;
 using System.Net;
 using System.Net.Cache;
 using System.Security.Cryptography;
@@ -153,86 +154,38 @@ namespace Analogy.Updater
                 return;
             }
 
-            var processStartInfo = new ProcessStartInfo
-            {
-                FileName = tempPath,
-                UseShellExecute = true,
-                Arguments = AutoUpdater.InstallerArgs.Replace("%path%",
-                    Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName))
-            };
-
             var extension = Path.GetExtension(tempPath);
             if (extension.Equals(".zip", StringComparison.OrdinalIgnoreCase))
             {
-                //todo
-                //string installerPath = Path.Combine(Path.GetDirectoryName(tempPath), "ZipExtractor.exe");
-
-                //try
-                //{
-                //    File.WriteAllBytes(installerPath, Resources.ZipExtractor);
-                //}
-                //catch (Exception e)
-                //{
-                //    MessageBox.Show(e.Message, e.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    _webClient = null;
-                //    Close();
-                //    return;
-                //}
-
-                //StringBuilder arguments =
-                //    new StringBuilder($"\"{tempPath}\" \"{Process.GetCurrentProcess().MainModule.FileName}\"");
-                //string[] args = Environment.GetCommandLineArgs();
-                //for (int i = 1; i < args.Length; i++)
-                //{
-                //    if (i.Equals(1))
-                //    {
-                //        arguments.Append(" \"");
-                //    }
-
-                //    arguments.Append(args[i]);
-                //    arguments.Append(i.Equals(args.Length - 1) ? "\"" : " ");
-                //}
-
-                //processStartInfo = new ProcessStartInfo
-                //{
-                //    FileName = installerPath,
-                //    UseShellExecute = true,
-                //    Arguments = arguments.ToString()
-                //};
+                string installerPath = Path.Combine(AutoUpdater.DownloadPath);
+                UnzipZipFileIntoTempFolder(tempPath, installerPath);
             }
-            else if (extension.Equals(".msi", StringComparison.OrdinalIgnoreCase))
-            {
-                processStartInfo = new ProcessStartInfo
-                {
-                    FileName = "msiexec",
-                    Arguments = $"/i \"{tempPath}\""
-                };
-                if (!string.IsNullOrEmpty(AutoUpdater.InstallerArgs))
-                {
-                    processStartInfo.Arguments += " " + AutoUpdater.InstallerArgs;
-                }
-
-
-                if (AutoUpdater.RunUpdateAsAdmin)
-                {
-                    processStartInfo.Verb = "runas";
-                }
-
-                try
-                {
-                    Process.Start(processStartInfo);
-                }
-                catch (Win32Exception exception)
-                {
-                    _webClient = null;
-                    if (exception.NativeErrorCode != 1223)
-                        throw;
-                }
-            }
-
+            File.Delete(tempPath);
             Close();
         }
+        private void UnzipZipFileIntoTempFolder(string zipPath, string extractPath)
+        {
 
+            using (FileStream zipToOpen = new FileStream(zipPath, FileMode.Open))
+            {
+                using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Read))
+                {
+
+                    //build a list of files to be extracted
+                    var entries = archive.Entries.Where(entry => !entry.FullName.EndsWith("/"));
+                    foreach (ZipArchiveEntry entry in entries)
+                    {
+                        string target = Path.Combine(extractPath, entry.FullName);
+                        string directory = Path.GetDirectoryName(target);
+                        if (!Directory.Exists(directory))
+                        {
+                            Directory.CreateDirectory(directory);
+                        }
+                        entry.ExtractToFile(target, true);
+                    }
+                }
+            }
+        }
         private static string BytesToString(long byteCount)
         {
             string[] suf = { "B", "KB", "MB", "GB", "TB", "PB", "EB" };

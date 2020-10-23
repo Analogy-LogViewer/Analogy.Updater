@@ -1,4 +1,5 @@
-using Analogy.Updater.Properties;
+using Analogy.Interfaces;
+using Analogy.Interfaces.DataTypes;
 using Microsoft.Win32;
 using System;
 using System.ComponentModel;
@@ -7,13 +8,10 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Net;
-using System.Net.Cache;
 using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using Analogy.Interfaces;
-using Analogy.Interfaces.DataTypes;
 
 namespace Analogy.Updater
 {
@@ -160,7 +158,7 @@ namespace Analogy.Updater
         ///     A delegate type for hooking up update notifications.
         /// </summary>
         /// <param name="args">An object containing all the parameters recieved from AppCast XML file. If there will be an error while looking for the XML file then this object will be null.</param>
-        public delegate void CheckForUpdateEventHandler(DownloadInformation args);
+        public delegate void CheckForUpdateEventHandler(string args);
 
         /// <summary>
         ///     An event that clients can use to be notified whenever the update is checked.
@@ -183,11 +181,13 @@ namespace Analogy.Updater
         /// </summary>
         public static Size? UpdateFormSize = null;
 
+        public static Form MainForm;
         /// <summary>
         ///     Start checking for new version of application and display dialog to the user if update is available.
         /// </summary>
-        public static void Start(DownloadInformation args)
+        public static void Start(string url, MainForm mainForm)
         {
+            MainForm = mainForm;
             try
             {
                 ServicePointManager.SecurityProtocol |= (SecurityProtocolType)192 | (SecurityProtocolType)768 |
@@ -214,16 +214,14 @@ namespace Analogy.Updater
 
                 backgroundWorker.DoWork += BackgroundWorkerDoWork;
 
-                backgroundWorker.RunWorkerCompleted += BackgroundWorkerOnRunWorkerCompleted;
 
-                backgroundWorker.RunWorkerAsync(args);
+                backgroundWorker.RunWorkerAsync(url);
             }
         }
 
-        private static void BackgroundWorkerOnRunWorkerCompleted(object sender,
-            RunWorkerCompletedEventArgs runWorkerCompletedEventArgs)
+        private static void BackgroundWorkerDoWork(object sender, DoWorkEventArgs e)
         {
-            if (!runWorkerCompletedEventArgs.Cancelled && runWorkerCompletedEventArgs.Result is DownloadInformation args)
+            if (e.Argument is string args)
             {
                 if (CheckForUpdateEvent != null)
                 {
@@ -232,49 +230,39 @@ namespace Analogy.Updater
                 else
                 {
 
-                    if (args.IsUpdateAvailable)
+
+                    if (!IsWinFormsApplication)
                     {
-                        if (!IsWinFormsApplication)
-                        {
-                            Application.EnableVisualStyles();
-                        }
+                        Application.EnableVisualStyles();
+                    }
 
-                        if (Mandatory && UpdateMode == UpdateMode.ForcedDownload)
-                        {
-                            DownloadUpdate(null);
-                            Exit();
-                        }
-                        else
-                        {
-                            if (Thread.CurrentThread.GetApartmentState().Equals(ApartmentState.STA))
-                            {
-                                ShowUpdateForm();
-                            }
-                            else
-                            {
-                                Thread thread = new Thread(ShowUpdateForm);
-                                thread.CurrentCulture = thread.CurrentUICulture = CultureInfo.CurrentCulture;
-                                thread.SetApartmentState(ApartmentState.STA);
-                                thread.Start();
-                                thread.Join();
-                            }
-                        }
-
-                        return;
+                    if (Mandatory && UpdateMode == UpdateMode.ForcedDownload)
+                    {
+                        DownloadUpdate(MainForm);
+                        Exit();
                     }
                     else
                     {
-                        if (ReportErrors)
+                        if (Thread.CurrentThread.GetApartmentState().Equals(ApartmentState.STA))
                         {
-                            MessageBox.Show(Resources.UpdateUnavailableMessage,
-                                Resources.UpdateUnavailableCaption,
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ShowUpdateForm();
+                        }
+                        else
+                        {
+                            Thread thread = new Thread(ShowUpdateForm);
+                            thread.CurrentCulture = thread.CurrentUICulture = CultureInfo.CurrentCulture;
+                            thread.SetApartmentState(ApartmentState.STA);
+                            thread.Start();
+                            thread.Join();
                         }
                     }
+
+                    return;
+
                 }
 
             }
-            
+
 
             Running = false;
         }
@@ -295,88 +283,7 @@ namespace Analogy.Updater
                 Exit();
             }
         }
-
-        private static void BackgroundWorkerDoWork(object sender, DoWorkEventArgs e)
-        {
-            e.Cancel = true;
-            DownloadInformation args = e.Argument as DownloadInformation;
-         
-            if (args != null && (args.LatestVersion == null || string.IsNullOrEmpty(args.DownloadURL)))
-            {
-                if (ReportErrors)
-                {
-                    throw new InvalidDataException();
-                }
-
-                return;
-            }
-
-            CurrentVersion = args.LatestVersion;
-            ChangelogURL = args.ChangelogURL;
-            DownloadURL = args.DownloadURL;
-            InstallerArgs = args.InstallerArgs ?? string.Empty;
-            InstalledVersion = args.InstalledVersion;
-            HashingAlgorithm = args.HashingAlgorithm ?? "MD5";
-            Checksum = args.Checksum ?? string.Empty;
-            Mandatory = args.Mandatory;
-            if (Mandatory)
-            {
-                ShowRemindLaterButton = false;
-                ShowSkipButton = false;
-            }
-            else
-            {
-                using (RegistryKey updateKey = Registry.CurrentUser.OpenSubKey(RegistryLocation))
-                {
-                    if (updateKey != null)
-                    {
-                        object skip = updateKey.GetValue("skip");
-                        object applicationVersion = updateKey.GetValue("version");
-                        if (skip != null && applicationVersion != null)
-                        {
-                            bool.TryParse(skip.ToString(), out var skipValue);
-                            var skipVersion = new Version(applicationVersion.ToString());
-                            if (skipValue.Equals("1") && CurrentVersion <= skipVersion)
-                                return;
-                            if (CurrentVersion > skipVersion)
-                            {
-                                using (RegistryKey updateKeyWrite = Registry.CurrentUser.CreateSubKey(RegistryLocation))
-                                {
-                                    if (updateKeyWrite != null)
-                                    {
-                                        updateKeyWrite.SetValue("version", CurrentVersion.ToString());
-                                        updateKeyWrite.SetValue("skip", 0);
-                                    }
-                                }
-                            }
-                        }
-
-                        object remindLaterTime = updateKey.GetValue("remindlater");
-
-                        if (remindLaterTime != null)
-                        {
-                            DateTime remindLater = Convert.ToDateTime(remindLaterTime.ToString(),
-                                CultureInfo.CreateSpecificCulture("en-US").DateTimeFormat);
-
-                            int compareResult = DateTime.Compare(DateTime.Now, remindLater);
-
-                            if (compareResult < 0)
-                            {
-                                e.Cancel = false;
-                                e.Result = remindLater;
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
-
-            args.IsUpdateAvailable = CurrentVersion > InstalledVersion;
-            args.InstalledVersion = InstalledVersion;
-
-            e.Cancel = false;
-            e.Result = args;
-        }
+        
 
         private static string GetURL(Uri baseUri, string url)
         {
@@ -535,7 +442,7 @@ namespace Analogy.Updater
         /// <summary>
         ///      Set this object with values received from the AppCast file.
         /// </summary>
-        public DownloadInformation UpdateInfo { get; set; }
+        public AnalogyDownloadInformation UpdateInfo { get; set; }
 
         /// <summary>
         ///     An object containing the AppCast file received from server.

@@ -1,5 +1,5 @@
 using System;
-using System.Linq;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Analogy.Updater
@@ -12,14 +12,29 @@ namespace Analogy.Updater
         [STAThread]
         static void Main(string[] args)
         {
-            if (!args.Any())
-                return;
+            Debugger.Launch();
 #if NETCOREAPP
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
 #endif
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            string location = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            var directory = System.IO.Path.GetDirectoryName(location);
+            AutoUpdater.DownloadPath = directory;
+            string title = null;
+            string downloadURL = null;
+            if (args.Length == 2)
+            {
+                title = args[0];
+                downloadURL = args[1];
+            }
+            else
+            {
+                title = "test";
+                downloadURL = "https://github.com/LiorBanai/HDF5-CSharp/releases/download/V1.11.0/V1.11.0.zip";
+            }
+            Application.Run(new MainForm(title, downloadURL));
         }
     }
 }
