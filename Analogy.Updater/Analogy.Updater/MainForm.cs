@@ -1,6 +1,8 @@
 ﻿using Analogy.Interfaces;
 using Analogy.Interfaces.DataTypes;
 using System;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Analogy.Updater
@@ -38,6 +40,16 @@ namespace Analogy.Updater
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnStartAnalogy_Click(object sender, EventArgs e)
+        {
+            string filename = "Analogy.EXE";
+            if (File.Exists(filename))
+            {
+                Process.Start(filename);
+                Application.Exit();
+            }
         }
     }
 }

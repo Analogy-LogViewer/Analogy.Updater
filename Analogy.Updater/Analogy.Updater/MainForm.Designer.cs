@@ -28,23 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnDownload = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.label1 = new System.Windows.Forms.Label();
             this.lblTitleValue = new System.Windows.Forms.Label();
             this.btnStartAnalogy = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnDownload
-            // 
-            this.btnDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDownload.Location = new System.Drawing.Point(658, 222);
-            this.btnDownload.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(130, 40);
-            this.btnDownload.TabIndex = 0;
-            this.btnDownload.Text = "Download";
-            this.btnDownload.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -75,6 +64,7 @@
             this.btnStartAnalogy.TabIndex = 3;
             this.btnStartAnalogy.Text = "Start Analogy";
             this.btnStartAnalogy.UseVisualStyleBackColor = true;
+            this.btnStartAnalogy.Click += new System.EventHandler(this.btnStartAnalogy_Click);
             // 
             // btnExit
             // 
@@ -97,7 +87,7 @@
             this.Controls.Add(this.btnStartAnalogy);
             this.Controls.Add(this.lblTitleValue);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnDownload);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.Text = "Analogy Updater";
@@ -107,8 +97,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnDownload;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTitleValue;
         private System.Windows.Forms.Button btnStartAnalogy;
