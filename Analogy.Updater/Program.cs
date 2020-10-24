@@ -24,16 +24,18 @@ namespace Analogy.Updater
             AutoUpdater.DownloadPath = directory;
             string title = null;
             string downloadURL = null;
-            if (args.Length == 2)
+            string targetFolder = null;
+            if (args.Length == 3)
             {
                 title = args[0];
                 downloadURL = args[1];
+                targetFolder = args[2];
             }
             else
             {
                 Application.Exit();
             }
-            Application.Run(new MainForm(title, downloadURL));
+            Application.Run(new MainForm(title, downloadURL,targetFolder));
         }
     }
 }

@@ -11,16 +11,21 @@ namespace Analogy.Updater
     {
         private string Title { get; }
         private string DownloadURL { get; }
+        private string TargetFolder { get; }
         public MainForm()
         {
             InitializeComponent();
         }
 
-        public MainForm(string title, string downloadURL) : this()
+        public MainForm(string title, string downloadURL,string targetFolder) : this()
         {
             Title = title;
             DownloadURL = downloadURL;
-
+            TargetFolder = targetFolder;
+            if (!Directory.Exists(TargetFolder))
+            {
+                Directory.CreateDirectory(TargetFolder);
+            }
         }
   
         private void MainForm_Load(object sender, EventArgs e)
@@ -29,6 +34,7 @@ namespace Analogy.Updater
             {
                 lblTitleValue.Text = Title;
                 AutoUpdater.DownloadURL=DownloadURL;
+                AutoUpdater.DownloadPath = TargetFolder;
                 if (AutoUpdater.DownloadUpdate(this))
                 {
                     DialogResult = DialogResult.OK;
