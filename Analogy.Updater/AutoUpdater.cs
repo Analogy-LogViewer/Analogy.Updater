@@ -128,12 +128,6 @@ namespace Analogy.Updater
         ///     Set this to true if you want to ignore previously assigned Remind Later and Skip settings. It will also hide Remind Later and Skip buttons.
         /// </summary>
         public static bool Mandatory;
-
-        /// <summary>
-        ///     Set this to any of the available modes to change behaviour of the Mandatory flag.
-        /// </summary>
-        public static UpdateMode UpdateMode;
-
         /// <summary>
         ///     Set Proxy server to use for all the web requests in AutoUpdater.NET.
         /// </summary>
@@ -236,7 +230,7 @@ namespace Analogy.Updater
                         Application.EnableVisualStyles();
                     }
 
-                    if (Mandatory && UpdateMode == UpdateMode.ForcedDownload)
+                    if (Mandatory)
                     {
                         DownloadUpdate(MainForm);
                         Exit();
@@ -438,11 +432,6 @@ namespace Analogy.Updater
         ///     Remote data received from the AppCast file.
         /// </summary>
         public string RemoteData { get; }
-
-        /// <summary>
-        ///      Set this object with values received from the AppCast file.
-        /// </summary>
-        public AnalogyDownloadInformation UpdateInfo { get; set; }
 
         /// <summary>
         ///     An object containing the AppCast file received from server.

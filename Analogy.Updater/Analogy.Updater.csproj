@@ -6,7 +6,7 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<Authors>Lior Banai</Authors>
 		<Company>Analogy.LogViewer</Company>
-		<Version>0.1.0</Version>
+		<Version>0.1.1.0</Version>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -18,12 +18,13 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 		<ApplicationIcon>AnalogyIconDark.ico</ApplicationIcon>
+		<PackageIcon>AnalogyDark.png</PackageIcon>
 
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="System.IO.Compression" Version="4.3.0" />
-		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="2.7.8" />
+		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="2.7.9.3" />
 		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -60,6 +61,10 @@
 		<None Update="Properties\Settings.settings">
 			<Generator>SettingsSingleFileGenerator</Generator>
 			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+		<None Include="..\Assets\AnalogyDark.png">
+		  <Pack>True</Pack>
+		  <PackagePath></PackagePath>
 		</None>
 	</ItemGroup>
 

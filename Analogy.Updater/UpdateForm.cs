@@ -25,7 +25,7 @@ namespace Analogy.Updater
                 string.Format(resources.GetString("labelDescription.Text", CultureInfo.CurrentCulture),
                     AutoUpdater.AppTitle, AutoUpdater.CurrentVersion, AutoUpdater.InstalledVersion);
 
-            if (AutoUpdater.Mandatory && AutoUpdater.UpdateMode == UpdateMode.Forced)
+            if (AutoUpdater.Mandatory)
             {
                 ControlBox = false;
             }
