@@ -39,25 +39,27 @@
             // 
             this.label1.Location = new System.Drawing.Point(12, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 26);
+            this.label1.Size = new System.Drawing.Size(199, 26);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Component:";
+            this.label1.Text = "Downloaded Component:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblTitleValue
             // 
             this.lblTitleValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitleValue.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTitleValue.Location = new System.Drawing.Point(151, 19);
+            this.lblTitleValue.Location = new System.Drawing.Point(231, 19);
             this.lblTitleValue.Name = "lblTitleValue";
-            this.lblTitleValue.Size = new System.Drawing.Size(637, 26);
+            this.lblTitleValue.Size = new System.Drawing.Size(557, 26);
             this.lblTitleValue.TabIndex = 2;
             this.lblTitleValue.Text = "N/A";
+            this.lblTitleValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnStartAnalogy
             // 
             this.btnStartAnalogy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStartAnalogy.Location = new System.Drawing.Point(522, 309);
+            this.btnStartAnalogy.Location = new System.Drawing.Point(522, 61);
             this.btnStartAnalogy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnStartAnalogy.Name = "btnStartAnalogy";
             this.btnStartAnalogy.Size = new System.Drawing.Size(130, 40);
@@ -69,7 +71,7 @@
             // btnExit
             // 
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.Location = new System.Drawing.Point(658, 309);
+            this.btnExit.Location = new System.Drawing.Point(658, 61);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(130, 40);
@@ -82,7 +84,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 360);
+            this.ClientSize = new System.Drawing.Size(800, 112);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnStartAnalogy);
             this.Controls.Add(this.lblTitleValue);

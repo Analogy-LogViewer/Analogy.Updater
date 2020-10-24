@@ -12,7 +12,7 @@ namespace Analogy.Updater
         [STAThread]
         static void Main(string[] args)
         {
-            Debugger.Launch();
+            //Debugger.Launch();
 #if NETCOREAPP
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
 #endif
@@ -34,8 +34,26 @@ namespace Analogy.Updater
             else
             {
                 Application.Exit();
+                return;
             }
+            KilAnalogyIfNeeded();
             Application.Run(new MainForm(title, downloadURL,targetFolder));
+        }
+
+        private static void KilAnalogyIfNeeded()
+        {
+            var analogies=Process.GetProcessesByName("Analogy");
+            foreach (var analogy in analogies)
+            {
+                try
+                {
+                    analogy.Kill();
+                }
+                catch (Exception)
+                {
+                   //
+                }
+            }
         }
     }
 }

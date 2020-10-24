@@ -63,7 +63,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DownloadUpdateDialog_FormClosing);
             this.Load += new System.EventHandler(this.DownloadUpdateDialogLoad);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
