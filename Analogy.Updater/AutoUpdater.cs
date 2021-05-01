@@ -2,11 +2,13 @@ using Analogy.Interfaces;
 using Analogy.Interfaces.DataTypes;
 using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text;
@@ -41,6 +43,17 @@ namespace Analogy.Updater
     /// </summary>
     public static class AutoUpdater
     {
+        private static List<string> skipFiles =
+                new List<string>
+                {
+                    "Analogy.CommonUtilities.dll",
+                    "Analogy.dll",
+                    "Analogy.exe",
+                    "Analogy.Interfaces.dll",
+                    "Analogy.LogViewer.Template.dll",
+                    "Newtonsoft.Json.dll",
+                    "MessagePack.dll"
+                };
         private static System.Timers.Timer _remindLaterTimer;
 
         internal static string ChangelogURL;
@@ -67,6 +80,11 @@ namespace Analogy.Updater
         ///     Set it to folder path where you want to download the update file. If not provided then it defaults to Temp folder.
         /// </summary>
         public static string DownloadPath;
+
+        /// <summary>
+        /// override old other files (not for this components
+        /// </summary>
+        public static bool ForceOverrideFiles;
 
         /// <summary>
         ///     Set the Application Title shown in Update dialog. Although AutoUpdater.NET will get it automatically, you can set this property if you like to give custom Title.
@@ -418,6 +436,14 @@ namespace Analogy.Updater
             }
 
             return false;
+        }
+
+        public static bool IsSkipFile(string fullFileName)
+        {
+            return (fullFileName.Contains("DevExpress") &&
+                    fullFileName.EndsWith("dll", StringComparison.InvariantCultureIgnoreCase)) ||
+                   skipFiles.Any(s => fullFileName.EndsWith(s, StringComparison.InvariantCultureIgnoreCase));
+
         }
     }
 

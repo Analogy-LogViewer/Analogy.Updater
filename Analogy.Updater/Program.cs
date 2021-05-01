@@ -25,11 +25,13 @@ namespace Analogy.Updater
             string title = null;
             string downloadURL = null;
             string targetFolder = null;
-            if (args.Length == 3)
+            bool forceOverrideFiles = false;
+            if (args.Length == 4)
             {
                 title = args[0];
                 downloadURL = args[1];
                 targetFolder = args[2];
+                forceOverrideFiles = bool.Parse(args[3]);
             }
             else
             {
@@ -37,7 +39,7 @@ namespace Analogy.Updater
                 return;
             }
             KilAnalogyIfNeeded();
-            Application.Run(new MainForm(title, downloadURL,targetFolder));
+            Application.Run(new MainForm(title, downloadURL,targetFolder,forceOverrideFiles));
         }
 
         private static void KilAnalogyIfNeeded()

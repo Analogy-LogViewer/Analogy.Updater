@@ -176,6 +176,11 @@ namespace Analogy.Updater
                     foreach (ZipArchiveEntry entry in entries)
                     {
                         string target = Path.Combine(extractPath, entry.FullName);
+                        bool skipFile = AutoUpdater.IsSkipFile(target);
+                        if (!AutoUpdater.ForceOverrideFiles && skipFile)
+                        {
+                            continue;
+                        }
                         string directory = Path.GetDirectoryName(target);
                         if (!Directory.Exists(directory))
                         {
