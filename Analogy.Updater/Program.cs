@@ -25,8 +25,15 @@ namespace Analogy.Updater
             string title = null;
             string downloadURL = null;
             string targetFolder = null;
-            bool forceOverrideFiles = false;
-            if (args.Length == 4)
+            bool forceOverrideFiles = args[0] == "Analogy Log viewer";
+            if (args.Length == 3)
+            {
+                title = args[0];
+                downloadURL = args[1];
+                targetFolder = args[2];
+
+            }
+            else if (args.Length == 4)
             {
                 title = args[0];
                 downloadURL = args[1];
@@ -39,12 +46,12 @@ namespace Analogy.Updater
                 return;
             }
             KilAnalogyIfNeeded();
-            Application.Run(new MainForm(title, downloadURL,targetFolder,forceOverrideFiles));
+            Application.Run(new MainForm(title, downloadURL, targetFolder, forceOverrideFiles));
         }
 
         private static void KilAnalogyIfNeeded()
         {
-            var analogies=Process.GetProcessesByName("Analogy");
+            var analogies = Process.GetProcessesByName("Analogy");
             foreach (var analogy in analogies)
             {
                 try
@@ -53,7 +60,7 @@ namespace Analogy.Updater
                 }
                 catch (Exception)
                 {
-                   //
+                    //
                 }
             }
         }
