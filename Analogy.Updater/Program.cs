@@ -12,7 +12,7 @@ namespace Analogy.Updater
         [STAThread]
         static void Main(string[] args)
         {
-            Debugger.Launch();
+            //Debugger.Launch();
 #if NETCOREAPP || NET
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
 #endif
