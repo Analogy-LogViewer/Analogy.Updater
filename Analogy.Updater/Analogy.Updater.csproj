@@ -24,7 +24,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="System.IO.Compression" Version="4.3.0" />
-		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="2.13.0" />
+		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="2.14.1" />
 		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
