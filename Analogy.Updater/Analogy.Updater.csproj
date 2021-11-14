@@ -6,7 +6,7 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<Authors>Lior Banai</Authors>
 		<Company>Analogy.LogViewer</Company>
-		<Version>0.3.0</Version>
+		<Version>0.3.1</Version>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -24,7 +24,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="System.IO.Compression" Version="4.3.0" />
-		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="2.15.1" />
 		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.1.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
