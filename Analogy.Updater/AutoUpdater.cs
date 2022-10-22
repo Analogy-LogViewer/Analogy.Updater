@@ -382,41 +382,6 @@ namespace Analogy.Updater
             return (Attribute)attributes[0];
         }
 
-        //internal static void SetTimer(DateTime remindLater)
-        //{
-        //    TimeSpan timeSpan = remindLater - DateTime.Now;
-
-        //    var context = SynchronizationContext.Current;
-
-        //    _remindLaterTimer = new System.Timers.Timer
-        //    {
-        //        Interval = (int)timeSpan.TotalMilliseconds,
-        //        AutoReset = false
-        //    };
-
-        //    _remindLaterTimer.Elapsed += delegate
-        //    {
-        //        _remindLaterTimer = null;
-        //        if (context != null)
-        //        {
-        //            try
-        //            {
-        //                context.Send(state => Start(), null);
-        //            }
-        //            catch (InvalidAsynchronousStateException)
-        //            {
-        //                Start();
-        //            }
-        //        }
-        //        else
-        //        {
-        //            Start();
-        //        }
-        //    };
-
-        //    _remindLaterTimer.Start();
-        //}
-
         /// <summary>
         ///     Opens the Download window that download the update and execute the installer when download completes.
         /// </summary>
