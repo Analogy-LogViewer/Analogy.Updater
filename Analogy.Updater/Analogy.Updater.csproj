@@ -2,15 +2,15 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFrameworks>net6.0-windows;net5.0-windows;netcoreapp3.1;net481;net48;net472;net471</TargetFrameworks>
+		<TargetFrameworks>net7.0-windows;net6.0-windows;net5.0-windows;netcoreapp3.1;net481;net48;net472;net471</TargetFrameworks>
 		<UseWindowsForms>true</UseWindowsForms>
 		<Authors>Lior Banai</Authors>
 		<Company>Analogy.LogViewer</Company>
-		<Version>0.3.2</Version>
+		<Version>0.4.0</Version>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<Copyright>Lior Banai 2020-2021</Copyright>
+		<Copyright>Lior Banai 2020-2022</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/Analogy-LogViewer/Analogy.Updater</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Analogy-LogViewer/Analogy.Updater</RepositoryUrl>
@@ -33,7 +33,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
+		<PackageReference Include="System.Resources.Extensions" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
