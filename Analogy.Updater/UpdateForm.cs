@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.Win32;
 
 namespace Analogy.Updater
 {
@@ -36,7 +36,6 @@ namespace Analogy.Updater
             set => base.Text = value;
         }
 
-       
         private void UpdateFormLoad(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(AutoUpdater.ChangelogURL))

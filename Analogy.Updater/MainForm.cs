@@ -16,7 +16,7 @@ namespace Analogy.Updater
             InitializeComponent();
         }
 
-        public MainForm(string title, string downloadURL,string targetFolder,bool forceOverrideFiles) : this()
+        public MainForm(string title, string downloadURL, string targetFolder, bool forceOverrideFiles) : this()
         {
             Title = title;
             DownloadURL = downloadURL;
@@ -27,19 +27,18 @@ namespace Analogy.Updater
                 Directory.CreateDirectory(TargetFolder);
             }
         }
-  
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             if (DownloadURL != null)
             {
                 lblTitleValue.Text = Title;
-                AutoUpdater.DownloadURL=DownloadURL;
+                AutoUpdater.DownloadURL = DownloadURL;
                 AutoUpdater.DownloadPath = TargetFolder;
                 AutoUpdater.ForceOverrideFiles = ForceOverrideFiles;
                 if (AutoUpdater.DownloadUpdate(this))
                 {
                     DialogResult = DialogResult.OK;
-                    
                 }
             }
         }

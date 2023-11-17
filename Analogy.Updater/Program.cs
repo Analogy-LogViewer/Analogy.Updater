@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace Analogy.Updater
 {
-    static class Program
+    public static class Program
     {
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             //Debugger.Launch();
 #if NETCOREAPP || NET
@@ -31,7 +31,6 @@ namespace Analogy.Updater
                 title = args[0];
                 downloadURL = args[1];
                 targetFolder = args[2];
-
             }
             else if (args.Length == 4)
             {

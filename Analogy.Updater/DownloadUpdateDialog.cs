@@ -33,7 +33,7 @@ namespace Analogy.Updater
         {
             _webClient = new MyWebClient
             {
-                CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore)
+                CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore),
             };
 
             if (AutoUpdater.Proxy != null)
@@ -165,12 +165,10 @@ namespace Analogy.Updater
         }
         private void UnzipZipFileIntoTempFolder(string zipPath, string extractPath)
         {
-
             using (FileStream zipToOpen = new FileStream(zipPath, FileMode.Open))
             {
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Read))
                 {
-
                     //build a list of files to be extracted
                     var entries = archive.Entries.Where(entry => !entry.FullName.EndsWith("/"));
                     foreach (ZipArchiveEntry entry in entries)

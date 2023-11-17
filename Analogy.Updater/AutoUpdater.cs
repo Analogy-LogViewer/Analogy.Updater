@@ -11,6 +11,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using MethodInvoker = System.Windows.Forms.MethodInvoker;
 
 namespace Analogy.Updater
 {
@@ -32,7 +33,7 @@ namespace Analogy.Updater
         /// <summary>
         ///     Represents the time span in days.
         /// </summary>
-        Days
+        Days,
     }
 
     /// <summary>
@@ -49,7 +50,7 @@ namespace Analogy.Updater
                     "Analogy.Interfaces.dll",
                     "Analogy.LogViewer.Template.dll",
                     "Newtonsoft.Json.dll",
-                    "MessagePack.dll"
+                    "MessagePack.dll",
                 };
         private static System.Timers.Timer _remindLaterTimer;
 
@@ -132,7 +133,7 @@ namespace Analogy.Updater
         ///<summary>
         ///     AutoUpdater.NET will report errors if this is true.
         /// </summary>
-        public static bool ReportErrors = false;
+        public static bool ReportErrors;
 
         /// <summary>
         ///     Set this to false if your application doesn't need administrator privileges to replace the old version.
@@ -143,6 +144,7 @@ namespace Analogy.Updater
         ///     Set this to true if you want to ignore previously assigned Remind Later and Skip settings. It will also hide Remind Later and Skip buttons.
         /// </summary>
         public static bool Mandatory;
+
         /// <summary>
         ///     Set Proxy server to use for all the web requests in AutoUpdater.NET.
         /// </summary>
@@ -188,9 +190,10 @@ namespace Analogy.Updater
         /// <summary>
         ///     Set if you want the default update form to have a different size.
         /// </summary>
-        public static Size? UpdateFormSize = null;
+        public static Size? UpdateFormSize;
 
         public static Form MainForm;
+
         /// <summary>
         ///     Start checking for new version of application and display dialog to the user if update is available.
         /// </summary>
@@ -223,7 +226,6 @@ namespace Analogy.Updater
 
                 backgroundWorker.DoWork += BackgroundWorkerDoWork;
 
-
                 backgroundWorker.RunWorkerAsync(url);
             }
         }
@@ -238,8 +240,6 @@ namespace Analogy.Updater
                 }
                 else
                 {
-
-
                     if (!IsWinFormsApplication)
                     {
                         Application.EnableVisualStyles();
@@ -267,11 +267,8 @@ namespace Analogy.Updater
                     }
 
                     return;
-
                 }
-
             }
-
 
             Running = false;
         }
@@ -292,7 +289,6 @@ namespace Analogy.Updater
                 Exit();
             }
         }
-        
 
         private static string GetURL(Uri baseUri, string url)
         {
@@ -405,11 +401,8 @@ namespace Analogy.Updater
             return (fullFileName.Contains("DevExpress") &&
                     fullFileName.EndsWith("dll", StringComparison.InvariantCultureIgnoreCase)) ||
                    skipFiles.Any(s => fullFileName.EndsWith(s, StringComparison.InvariantCultureIgnoreCase));
-
         }
     }
-
-
 
     /// <summary>
     ///     An object of this class contains the AppCast file received from server.

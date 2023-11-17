@@ -1,9 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30404.54
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analogy.Updater", "Analogy.Updater\Analogy.Updater.csproj", "{13E6BDA3-3873-4F76-BF9D-E3AF7ED2FBC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analogy.Updater", "Analogy.Updater\Analogy.Updater.csproj", "{13E6BDA3-3873-4F76-BF9D-E3AF7ED2FBC1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AA85B6B2-6976-44B4-9AAE-7D576F90BBBA}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		.github\workflows\dotnet-desktop.yml = .github\workflows\dotnet-desktop.yml
+		nuget.config = nuget.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
