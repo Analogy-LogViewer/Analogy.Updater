@@ -47,13 +47,6 @@ jobs:
       run: msbuild $env:Solution_Name /t:Rebuild /p:Configuration=$env:Configuration
       env:
         Configuration: ${{ matrix.configuration }}
-
-    # Publish Artifacts 
-    - name: 'Publish Artifacts'   
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        name: 'artifactory'
-        path: ./Analogy.Updater/bin/${{ matrix.configuration }}
 concurrency: 
   group: ${{ github.ref }}
   cancel-in-progress: true
