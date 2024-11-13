@@ -1,11 +1,14 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Analogy.Updater
 {
     internal partial class RemindLaterForm : Form
     {
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public RemindLaterFormat RemindLaterFormat { get; private set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 
         public int RemindLaterAt { get; private set; }
 
