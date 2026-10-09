@@ -14,12 +14,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="System.IO.Compression" Version="4.3.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-		<PackageReference Include="System.Resources.Extensions" Version="10.0.9" />
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.203" PrivateAssets="All" />
-
-		
+		<PackageReference Include="System.IO.Compression" />
+		<PackageReference Include="Newtonsoft.Json" />
+		<PackageReference Include="System.Resources.Extensions" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -54,7 +52,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Update="Microsoft.SourceLink.GitHub" Version="10.0.300" />
+	  <PackageReference Update="Microsoft.SourceLink.GitHub" />
 	</ItemGroup>
-
+	<!-- Analyzers (Roslyn, Meziantou, StyleCop, ...) -->
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeStyle">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Meziantou.Analyzer">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="StyleCop.Analyzers">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 </Project>
